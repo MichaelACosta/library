@@ -1,0 +1,12 @@
+{
+  "books": [
+    {
+      "name": "x",
+      "autor": "y",
+      "dataAquisicao": 2019,
+      "dataCompra": 2019,
+      "status": "lido"
+    }
+  ],
+  "status": ["lido"]
+}
