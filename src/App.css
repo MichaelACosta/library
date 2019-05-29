@@ -1,8 +1,6 @@
 .App {
   min-width: 320px;
   max-height: 1250px;
-  display: flex;
-  justify-content: center;
 }
 
 @media (min-width: 321px) {
@@ -17,8 +15,4 @@
     min-width: 1024px;
     max-height: 1024px;
   }
-}
-
-.Box {
-  width: 1000px;
 }
