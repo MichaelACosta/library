@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.0.1",
     "@material-ui/icons": "^4.0.1",
+    "axios": "^0.18.0",
     "immutable": "^4.0.0-rc.12",
     "json-server": "^0.15.0",
     "prop-types": "^15.7.2",
@@ -15,7 +16,8 @@
     "react-scripts": "3.0.1",
     "redux": "^4.0.1",
     "redux-immutable": "^4.0.0",
-    "redux-mock-store": "^1.5.3"
+    "redux-mock-store": "^1.5.3",
+    "redux-saga": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
