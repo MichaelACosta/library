@@ -1,6 +1,8 @@
 .App {
   min-width: 320px;
-  max-height: 1250px;
+  min-height: 720px;
+  background-color: #f8f8f9;
+  overflow: auto;
 }
 
 @media (min-width: 321px) {

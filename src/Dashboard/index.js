@@ -4,11 +4,14 @@ import injectSheet from "react-jss";
 import { connect } from "react-redux";
 import { getBooks } from "./reducer";
 import * as actions from "./actions";
+import CardDetails from "./CardDetails";
 
 const style = {
   box: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    padding: "10px 0 0 0",
+    flexWrap: "wrap"
   },
   card: {
     marginRight: 50
@@ -25,15 +28,7 @@ class Dashboard extends React.Component {
     return (
       <div className={classes.box}>
         {books.map(book => {
-          return (
-            <div key={book.isbn} className={classes.card}>
-              <h1>{book.title}</h1>
-              <p>{book.autor}</p>
-              <p>{book.purchaseDate}</p>
-              <p>{book.editDate}</p>
-              <p>{book.status}</p>
-            </div>
-          );
+          return <CardDetails book={book} key={book.title} />;
         })}
       </div>
     );
