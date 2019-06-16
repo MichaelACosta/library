@@ -15,3 +15,7 @@ export const fetchBooks = () => {
       console.log(error);
     });
 };
+
+export const sendBook = book => {
+  return axios.post(`${http}/books`, book).then(response => response);
+};
