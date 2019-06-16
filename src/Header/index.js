@@ -45,7 +45,7 @@ const Header = ({ classes }) => (
           </Link>
         </div>
         <div className={classes.buttonStyle}>
-          <Link to={"/"} variant="contained" className={classes.button}>
+          <Link to={"/insert"} variant="contained" className={classes.button}>
             New Book
           </Link>
         </div>
