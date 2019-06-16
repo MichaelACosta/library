@@ -1,57 +1,13 @@
 import React from "react";
-import PropTypes from "prop-types";
-import injectSheet from "react-jss";
-import { connect } from "react-redux";
-import { getBooks } from "./reducer";
-import * as actions from "./actions";
-import CardDetails from "./CardDetails";
+import { Route } from "react-router-dom";
+import List from "./List";
+import Insert from "./Insert";
 
-const style = {
-  box: {
-    display: "flex",
-    justifyContent: "center",
-    padding: "10px 0 0 0",
-    flexWrap: "wrap"
-  },
-  card: {
-    marginRight: 50
-  }
-};
+const Dashboard = () => (
+  <>
+    <Route exact path="/" component={List} />
+    <Route exact path="/insert" component={Insert} />
+  </>
+);
 
-class Dashboard extends React.Component {
-  componentWillMount() {
-    const { loadBooks } = this.props;
-    loadBooks();
-  }
-  render() {
-    const { classes, books } = this.props;
-    return (
-      <div className={classes.box}>
-        {books.map(book => {
-          return <CardDetails book={book} key={book.title} />;
-        })}
-      </div>
-    );
-  }
-}
-
-Dashboard.propTypes = {
-  classes: PropTypes.object.isRequired,
-  books: PropTypes.array.isRequired,
-  loadBooks: PropTypes.func.isRequired
-};
-
-const mapStateToProps = state => ({
-  books: getBooks(state)
-});
-
-const mapDispatchToProps = dispatch => ({
-  loadBooks() {
-    setInterval(() => dispatch(actions.fetchBooks()), 1000);
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(injectSheet(style)(Dashboard));
+export default Dashboard;

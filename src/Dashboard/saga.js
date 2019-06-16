@@ -10,6 +10,14 @@ export function* fetchBooks() {
   }
 }
 
+export function* sendBook(book) {
+  const result = yield api.sendBook(book.payload);
+  if (result) {
+    yield fetchBooks();
+  }
+}
+
 export default function* rootSaga() {
   yield takeEvery(types.FETCH_BOOKS, fetchBooks);
+  yield takeEvery(types.SEND_BOOK, sendBook);
 }
