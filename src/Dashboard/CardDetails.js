@@ -20,7 +20,7 @@ const CardDetails = ({ classes, book }) => (
     <CardContent className={classes.content}>
       <div>
         <h2>{book.title}</h2>
-        <h3>{book.autor}</h3>
+        <h3>{book.author}</h3>
         <p>Purchase Date: {book.purchaseDate}</p>
         <p>Edit Date: {book.editDate}</p>
         <p>{book.status}</p>

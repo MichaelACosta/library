@@ -1,14 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import { connect } from "react-redux";
 import * as actions from "./actions";
 
 const style = {
-  box: {
-    display: "flex",
-    justifyContent: "center"
-  },
   send: {
     fontFamily: "Roboto",
     fontSize: 12,
@@ -17,15 +13,17 @@ const style = {
     border: "none",
     textDecoration: "none",
     outline: "none",
-    cursor: "pointer"
+    cursor: "pointer",
+    borderRadius: 10,
+    width: 100,
+    height: 30
   },
   form: {
-    display: "flex",
-    justifyContent: "space-around",
-    alignItems: "center",
+    margin: "auto",
     width: 288
   },
   text: {
+    marginBottom: 1,
     width: 201,
     height: 14,
     border: "none",
@@ -35,169 +33,124 @@ const style = {
     textDecoration: "none",
     outline: "none"
   },
-  "@media (min-width: 321px)": {
-    form: {
-      width: 348
-    }
+  label: {
+    display: "block",
+    marginBottom: 4
   },
-  "@media (min-width: 769px)": {
+  "@media (max-width: 768px)": {
     form: {
-      width: 312
+      display: "block",
+      width: 348
+    },
+    send: {
+      display: "block",
+      margin: "auto",
+      width: 70,
+      height: 25
     }
   }
 };
 
-class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isbn: "ISBN",
-      title: "Title",
-      autor: "Autor",
-      purchaseDate: "Purchase Date",
-      editDate: "Edit Date",
-      status: "Status"
-    };
+const Form = ({ classes, sendReport }) => {
+  const [isbn, setIsbn] = useState("ISBN");
+  const [title, setTitle] = useState("Title");
+  const [author, setAuthor] = useState("Author");
+  const [purchaseDate, setPurchaseDate] = useState("Purchase Date");
+  const [editDate, setEditDate] = useState("Edit Date");
+  const [status, setStatus] = useState("Status");
 
-    this.handleChangeTitle = this.handleChangeTitle.bind(this);
-    this.handleChangeAutor = this.handleChangeAutor.bind(this);
-    this.handleChangeIsbn = this.handleChangeIsbn.bind(this);
-    this.handleChangePurchase = this.handleChangePurchase.bind(this);
-    this.handleChangeEdit = this.handleChangeEdit.bind(this);
-    this.handleChangeStatus = this.handleChangeStatus.bind(this);
-    this.handleClickTitle = this.handleClickTitle.bind(this);
-    this.handleClickAutor = this.handleClickAutor.bind(this);
-    this.handleClickIsbn = this.handleClickIsbn.bind(this);
-    this.handleClickPurchase = this.handleClickPurchase.bind(this);
-    this.handleClickEdit = this.handleClickEdit.bind(this);
-    this.handleClickStatus = this.handleClickStatus.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  const handleChangeTitle = event => {
+    setTitle(event.target.value);
+  };
 
-  handleClickTitle(event) {
-    this.setState({ title: "" });
-  }
+  const handleChangeAuthor = event => {
+    setAuthor(event.target.value);
+  };
 
-  handleClickAutor(event) {
-    this.setState({ autor: "" });
-  }
+  const handleChangeIsbn = event => {
+    setIsbn(event.target.value);
+  };
 
-  handleClickIsbn(event) {
-    this.setState({ isbn: "" });
-  }
+  const handleChangePurchase = event => {
+    setPurchaseDate(event.target.value);
+  };
 
-  handleClickPurchase(event) {
-    this.setState({ purchaseDate: "" });
-  }
+  const handleChangeEdit = event => {
+    setEditDate(event.target.value);
+  };
 
-  handleClickEdit(event) {
-    this.setState({ editDate: "" });
-  }
+  const handleChangeStatus = event => {
+    setStatus(event.target.value);
+  };
 
-  handleClickStatus(event) {
-    this.setState({ status: "" });
-  }
-
-  handleChangeTitle(event) {
-    this.setState({ title: event.target.value });
-  }
-
-  handleChangeAutor(event) {
-    this.setState({ autor: event.target.value });
-  }
-
-  handleChangeIsbn(event) {
-    this.setState({ isbn: event.target.value });
-  }
-
-  handleChangePurchase(event) {
-    this.setState({ purchaseDate: event.target.value });
-  }
-
-  handleChangeEdit(event) {
-    this.setState({ editDate: event.target.value });
-  }
-
-  handleChangeStatus(event) {
-    this.setState({ status: event.target.value });
-  }
-
-  handleSubmit(event) {
-    const { sendReport } = this.props;
+  const handleSubmit = event => {
     sendReport({
-      isbn: this.state.isbn,
-      title: this.state.title,
-      autor: this.state.autor,
-      purchaseDate: this.state.purchaseDate,
-      editDate: this.state.editDate,
-      status: this.state.status
+      isbn: isbn,
+      title: title,
+      author: author,
+      purchaseDate: purchaseDate,
+      editDate: editDate,
+      status: status
     });
-    this.setState({
-      isbn: "ISBN",
-      title: "Title",
-      autor: "Autor",
-      purchaseDate: 2019,
-      editDate: 2019,
-      status: "Read"
-    });
+    setIsbn("ISBN");
+    setTitle("Title");
+    setAuthor("Author");
+    setPurchaseDate("Purchase Date");
+    setEditDate("Edit Date");
+    setStatus("Read");
     event.preventDefault();
-  }
+  };
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <div className={classes.box}>
-        <form className={classes.form} onSubmit={this.handleSubmit}>
-          <label>
-            <input
-              className={classes.text}
-              type="text"
-              value={this.state.isbn}
-              onChange={this.handleChangeIsbn}
-              onClick={this.handleClickIsbn}
-            />
-            <input
-              className={classes.text}
-              type="text"
-              value={this.state.title}
-              onChange={this.handleChangeTitle}
-              onClick={this.handleClickTitle}
-            />
-            <input
-              className={classes.text}
-              type="text"
-              value={this.state.autor}
-              onChange={this.handleChangeAutor}
-              onClick={this.handleClickAutor}
-            />
-            <input
-              className={classes.text}
-              type="text"
-              value={this.state.purchaseDate}
-              onChange={this.handleChangePurchase}
-              onClick={this.handleClickPurchase}
-            />
-            <input
-              className={classes.text}
-              type="text"
-              value={this.state.editDate}
-              onChange={this.handleChangeEdit}
-              onClick={this.handleClickEdit}
-            />
-            <input
-              className={classes.text}
-              type="text"
-              value={this.state.status}
-              onChange={this.handleChangeStatus}
-              onClick={this.handleClickStatus}
-            />
-          </label>
-          <input className={classes.send} type="submit" value="SEND" />
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <form className={classes.form} onSubmit={handleSubmit}>
+      <label className={classes.label}>
+        <input
+          className={classes.text}
+          type="text"
+          value={isbn}
+          onChange={handleChangeIsbn}
+          onClick={() => setIsbn("")}
+        />
+        <input
+          className={classes.text}
+          type="text"
+          value={title}
+          onChange={handleChangeTitle}
+          onClick={() => setTitle("")}
+        />
+        <input
+          className={classes.text}
+          type="text"
+          value={author}
+          onChange={handleChangeAuthor}
+          onClick={() => setAuthor("")}
+        />
+        <input
+          className={classes.text}
+          type="text"
+          value={purchaseDate}
+          onChange={handleChangePurchase}
+          onClick={() => setPurchaseDate("")}
+        />
+        <input
+          className={classes.text}
+          type="text"
+          value={editDate}
+          onChange={handleChangeEdit}
+          onClick={() => setEditDate("")}
+        />
+        <input
+          className={classes.text}
+          type="text"
+          value={status}
+          onChange={handleChangeStatus}
+          onClick={() => setStatus("")}
+        />
+        <input className={classes.send} type="submit" value="SEND" />
+      </label>
+    </form>
+  );
+};
 
 Form.propTypes = {
   classes: PropTypes.object.isRequired,
