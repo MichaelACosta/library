@@ -1,13 +1,12 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import List from "./List";
-import Insert from "./Insert";
+import Insert from "./List/Insert";
 
-const Dashboard = () => (
-  <>
+const Routes = () =>
+  <Switch>
     <Route exact path="/" component={List} />
     <Route exact path="/insert" component={Insert} />
-  </>
-);
+  </Switch>
 
-export default Dashboard;
+export default Routes;

@@ -1,14 +1,14 @@
 import React from "react";
 import "./App.css";
 import Header from "./Header";
-import Dashboard from "./Dashboard";
+import Routes from "./Routes";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const App = () => (
   <div className="App">
     <Router>
       <Header />
-      <Dashboard />
+      <Routes />
     </Router>
   </div>
 );

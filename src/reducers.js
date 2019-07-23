@@ -1,5 +1,5 @@
 import { combineReducers } from "redux-immutable";
-import library from "./Dashboard/reducer";
+import library from "./List/reducer";
 
 export default combineReducers({
   library
