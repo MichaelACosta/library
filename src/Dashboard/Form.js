@@ -6,7 +6,6 @@ import * as actions from "./actions";
 
 const style = {
   send: {
-    fontFamily: "Roboto",
     fontSize: 12,
     fontWeight: "bold",
     color: "#4c84ff",
@@ -14,7 +13,7 @@ const style = {
     textDecoration: "none",
     outline: "none",
     cursor: "pointer",
-    borderRadius: 10,
+    borderRadius: 40,
     width: 100,
     height: 30
   },
@@ -23,31 +22,16 @@ const style = {
     width: 288
   },
   text: {
-    marginBottom: 1,
-    width: 201,
-    height: 14,
+    borderRadius: 25,
+    width: 250,
+    height: 25,
+    textAlign: "center",
+    marginBottom: 5,
     border: "none",
-    fontFamily: "Roboto",
     fontSize: 12,
     color: "rgba(108, 108, 108, 0.5)",
     textDecoration: "none",
     outline: "none"
-  },
-  label: {
-    display: "block",
-    marginBottom: 4
-  },
-  "@media (max-width: 768px)": {
-    form: {
-      display: "block",
-      width: 348
-    },
-    send: {
-      display: "block",
-      margin: "auto",
-      width: 70,
-      height: 25
-    }
   }
 };
 
@@ -97,13 +81,13 @@ const Form = ({ classes, sendReport }) => {
     setAuthor("Author");
     setPurchaseDate("Purchase Date");
     setEditDate("Edit Date");
-    setStatus("Read");
+    setStatus("Status");
     event.preventDefault();
   };
 
   return (
     <form className={classes.form} onSubmit={handleSubmit}>
-      <label className={classes.label}>
+      <label>
         <input
           className={classes.text}
           type="text"
