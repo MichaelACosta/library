@@ -13,7 +13,9 @@ const style = {
   },
   label: {
     fontSize: 20,
-    fontWeight: 600
+    fontWeight: 600,
+    textDecoration: "none",
+    color: "black"
   },
   boxButton: {
     display: "flex"
@@ -37,10 +39,10 @@ const style = {
 const Header = ({ classes }) => (
   <AppBar position="static" color="default">
     <Toolbar className={classes.toolBar}>
-      <span className={classes.label}>My library</span>
+      <Link to={"/"} variant="contained" className={classes.label}>My library</Link>
       <div className={classes.boxButton}>
         <div className={classes.buttonStyle}>
-          <Link to={"/"} variant="contained" className={classes.button}>
+          <Link to={"/list"} variant="contained" className={classes.button}>
             Dashboard
           </Link>
         </div>
