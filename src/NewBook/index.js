@@ -10,15 +10,15 @@ const style = {
   }
 };
 
-const Insert = ({ classes }) => (
+const NewBook = ({ classes }) => (
   <div className={classes.box}>
     <h2>Register your book</h2>
     <Form />
   </div>
 );
 
-Insert.propTypes = {
+NewBook.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default injectSheet(style)(Insert);
+export default injectSheet(style)(NewBook);

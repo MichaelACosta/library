@@ -8,8 +8,3 @@ export const setBooks = payload => ({
   type: types.SET_BOOKS,
   payload
 });
-
-export const sendBook = payload => ({
-  type: types.SEND_BOOK,
-  payload
-});

@@ -1,3 +1,2 @@
 export const SET_BOOKS = "LIBRARY/SET_BOOKS";
 export const FETCH_BOOKS = "LIBRARY/FETCH_BOOKS";
-export const SEND_BOOK = "LIBRARY/SEND_BOOK";

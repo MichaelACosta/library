@@ -18,7 +18,7 @@ const style = {
   }
 };
 
-class List extends React.Component {
+class ListBook extends React.Component {
   componentWillMount() {
     const { loadBooks } = this.props;
     loadBooks();
@@ -35,7 +35,7 @@ class List extends React.Component {
   }
 }
 
-List.propTypes = {
+ListBook.propTypes = {
   classes: PropTypes.object.isRequired,
   books: PropTypes.array.isRequired,
   loadBooks: PropTypes.func.isRequired
@@ -54,4 +54,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(injectSheet(style)(List));
+)(injectSheet(style)(ListBook));
