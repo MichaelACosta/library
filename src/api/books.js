@@ -1,11 +1,10 @@
 import axios from "axios";
+import { http } from "./utils";
 
 const decoder = response => {
   if (response.status === 200) return response.data;
   return "error";
 };
-
-const http = "http://localhost:3000";
 
 export const fetchBooks = () => {
   return axios
