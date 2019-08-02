@@ -83,7 +83,7 @@ const Form = ({ classes, sendReport }) => {
         />
         <input
           className={classes.text}
-          type="text"
+          type="password"
           value={password}
           onChange={handleChangePassword}
           onClick={() => setPassword("")}

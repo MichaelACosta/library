@@ -4,7 +4,7 @@ import ListBook from "./ListBook";
 import NewBook from "./NewBook";
 import Login from "./Login";
 import SingUp from "./SingUp";
-import isAuthenticated from "./auth";
+import { isAuthenticated } from "./auth";
 
 const PrivateRoutes = ({ component: Component, ...rest }) => (
   <Route {...rest} render={

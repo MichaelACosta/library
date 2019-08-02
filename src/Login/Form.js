@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { authenticateUser } from "../auth";
 
 const style = {
   send: {
@@ -76,7 +77,7 @@ const Form = ({ classes, sendReport }) => {
         />
         <input
           className={classes.text}
-          type="text"
+          type="password"
           value={password}
           onChange={handleChangePassword}
           onClick={() => setPassword("")}
@@ -97,7 +98,7 @@ Form.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   sendReport(message) {
-    dispatch(null);
+    dispatch(authenticateUser('user'));
   }
 });
 
