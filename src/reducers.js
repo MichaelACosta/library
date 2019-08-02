@@ -1,8 +1,10 @@
 import { combineReducers } from "redux-immutable";
 import library from "./ListBook/reducer";
+import status from "./NewBook/reducer";
 
 export default combineReducers({
-  library
+  library,
+  status
 });
 
 // Selectors

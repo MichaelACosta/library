@@ -1,1 +1,3 @@
 export const SEND_BOOK = "LIBRARY/SEND_BOOK";
+export const FETCH_STATUS = "LIBRARY/FETCH_STATUS";
+export const SET_STATUS = "LIBRARY/SET_STATUS";

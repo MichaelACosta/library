@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import { connect } from "react-redux";
 import * as actions from "./actions";
+import { getStatus } from "./reducer";
 
 const style = {
   send: {
@@ -32,16 +33,27 @@ const style = {
     color: "rgba(108, 108, 108, 0.5)",
     textDecoration: "none",
     outline: "none"
+  },
+  select: {
+    borderRadius: 25,
+    width: 250,
+    height: 25,
+    textAlign: "center",
+    marginBottom: 5,
+    border: "none",
+    fontSize: 12,
+    textDecoration: "none",
+    outline: "none"
   }
 };
 
-const Form = ({ classes, sendReport }) => {
+const Form = ({ classes, sendReport, statusList }) => {
   const [isbn, setIsbn] = useState("ISBN");
   const [title, setTitle] = useState("Title");
   const [author, setAuthor] = useState("Author");
   const [purchaseDate, setPurchaseDate] = useState("Purchase Date");
   const [editDate, setEditDate] = useState("Edit Date");
-  const [status, setStatus] = useState("Status");
+  const [status, setStatus] = useState("read");
 
   const handleChangeTitle = event => {
     setTitle(event.target.value);
@@ -81,7 +93,7 @@ const Form = ({ classes, sendReport }) => {
     setAuthor("Author");
     setPurchaseDate("Purchase Date");
     setEditDate("Edit Date");
-    setStatus("Status");
+    setStatus("read");
     event.preventDefault();
   };
 
@@ -123,23 +135,27 @@ const Form = ({ classes, sendReport }) => {
           onChange={handleChangeEdit}
           onClick={() => setEditDate("")}
         />
-        <input
-          className={classes.text}
-          type="text"
-          value={status}
-          onChange={handleChangeStatus}
-          onClick={() => setStatus("")}
-        />
+        <select className={classes.select} onChange={handleChangeStatus}>
+          {statusList.map(
+            prop =>
+              <option key={prop} value={prop}>{prop}</option>
+          )}
+        </select>
         <input className={classes.send} type="submit" value="SEND" />
       </label>
-    </form>
+    </form >
   );
 };
 
 Form.propTypes = {
   classes: PropTypes.object.isRequired,
+  statusList: PropTypes.array.isRequired,
   sendReport: PropTypes.func.isRequired
 };
+
+const mapStateToProps = state => ({
+  statusList: getStatus(state)
+});
 
 const mapDispatchToProps = dispatch => ({
   sendReport(message) {
@@ -148,6 +164,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(injectSheet(style)(Form));

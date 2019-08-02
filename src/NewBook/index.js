@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
+import { connect } from "react-redux";
+import * as actions from "./actions";
 import Form from "./Form";
 
 const style = {
@@ -10,15 +12,31 @@ const style = {
   }
 };
 
-const NewBook = ({ classes }) => (
-  <div className={classes.box}>
-    <h2>Register your book</h2>
-    <Form />
-  </div>
-);
+const NewBook = ({ classes, loadStatus }) => {
+  useEffect(() => {
+    loadStatus();
+  })
+
+  return (
+    <div className={classes.box}>
+      <h2>Register your book</h2>
+      <Form />
+    </div>
+  );
+}
 
 NewBook.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  loadStatus: PropTypes.func.isRequired
 };
 
-export default injectSheet(style)(NewBook);
+const mapDispatchToProps = dispatch => ({
+  loadStatus() {
+    dispatch(actions.fetchStatus());
+  }
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(injectSheet(style)(NewBook));
